@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+    {% block stylesheet %} <link href="vendor/bootstrap/css/sb-admin.css" rel="stylesheet"> {% endblock %}
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+        <div class="card card-login mx-auto mt-5 mb-5">
+            <div class="card-header">RECUPERATION DE MOT DE PASSE</div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            {#<input type="email" id="inputEmail" class="form-control" name="_username" placeholder="Entrer votre mot de passe" autofocus="autofocus">#}
+                            {#<label for="inputEmail">Entrer votre mot de passe</label>#}
+                            {{ form_row(form.Password) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                           {# <input type="password" id="inputPassword" name="_password" class="form-control" placeholder="Entrer a nouveau votre mot de passe" required="required">
+                            <label for="inputPassword">Entrer a nouveau votre mot de passe</label>#}
+                            {{ form_row(form.confirm_password) }}
+                        </div>
+                    </div>
+
+                    <input class="btn btn-success btn-block" type="submit" value="Reinitialiser votre mot de passe">
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

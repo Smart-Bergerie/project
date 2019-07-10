@@ -1,0 +1,73 @@
+security:
+
+    encoders:
+        App\Entity\Users:
+            algorithm: auto
+            cost: 12
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        from_database:
+            entity:
+                class: App\Entity\Users
+                property: Username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            pattern: ^/admin
+            anonymous: true
+            logout:
+                path: admin.deconnexion
+                target: admin.acceuil
+
+            # activate different ways to authenticate
+            form_login:
+                check_path: admin.connexion
+                login_path: admin.connexion
+
+        user:
+            pattern: ^/
+            anonymous: true
+            logout:
+                path: user.logout
+                target: /
+
+            # activate different ways to authenticate
+            form_login:
+                check_path: user.login
+                login_path: user.login
+                default_target_path: user.moncompte
+
+
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # clients systeme
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/mailerecuparation, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/resetPassword, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/activecompte, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/mot-de-passe-oublier, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/resetpassword, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/moncompte, roles: ROLE_USER }
+
+        # admin systeme {super admin, admin, comptable, veterinaire, commercial}
+
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/admin/comptable, roles: ROLE_COMPTABLE }
+        - { path: ^/admin/commercial, roles: ROLE_COMMERCIAL }
+        - { path: ^/admin/veterinaire, roles: ROLE_VETERINAIRE }
+        - { path: ^/admin/administrateur, roles: ROLE_FERMIER }
+        - { path: ^/admin/administrateur, roles: ROLE_SUPER_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

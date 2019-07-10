@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+    {% block stylesheet %} <link href="vendor/bootstrap/css/sb-admin.css" rel="stylesheet"> {% endblock %}
+    {% block body %}
+
+<!-- Page Content -->
+<div class="container">
+    <div class="card card-register mx-auto mt-5 mb-5">
+        <div class="card-header">CONSTRUISEZ VOTRE PROFIL</div>
+        <div class="card-body">
+          {{ form_start(form) }}
+                <div class="form-group">
+                    <div class="form-row align-items-end">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                {#<input type="text" id="prenom" class="form-control" placeholder="Prenom(s)" autofocus="autofocus">#}
+                                {{ form_row(form.Prenom) }}
+                                {#<label for="prenom">Entrez votre prenom ou vos prenoms</label>#}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                {#<input type="text" id="nom" class="form-control" placeholder="Entrez votre nom de famille">#}
+                                {{ form_row(form.Nom) }}
+                                {#<label for="nom">Entrez votre nom de famille</label>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                       {# <input type="text" id="inputEmail" class="form-control" placeholder="Entrer votre adresse de courriel" required="required">#}
+                        {{ form_row(form.Email) }}
+                        {#<label for="inputEmail">Entrer votre adresse de courriel</label>#}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        {#<input type="text" id="inputEmail" class="form-control" placeholder="Entrer votre nom d'utilisateur" required="required">#}
+                        {{ form_row(form.Username) }}
+                        {#<label for="inputEmail">Entrer votre nom d'utilisateur</label>#}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row align-items-end">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                               {# <input type="password" id="mdp" class="form-control" placeholder="Entrer votre mot de passe" required="required">#}
+                                {{ form_row(form.Password) }}
+                                {#<label for="mdp">Entrer votre mot de passe</label>#}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                {#<input type="password" id="mdpConf" class="form-control" placeholder="Entrer a nouveau votre mot de passe" required="required">#}
+                                {{ form_row(form.confirm_password) }}
+                                {#<label for="mdpConf">Entrer a nouveau votre mot de passe</label>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row align-items-end">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                               {# <input type="text" id="numeroTelephone" class="form-control" placeholder="Telephone" autofocus="autofocus">#}
+
+                                {{ form_row(form.Telephone) }}
+
+                                {#<label for="numeroTelephone">Entrez votre numero de telephone</label>#}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+
+                                {{ form_row(form.Sexe) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input class="btn btn-success btn-block" type="submit" value="ENREGISTRER">
+            {{ form_end(form) }}
+            <div class="text-center">
+                <a class="d-block small text-success mt-3" href="{{ path('user.connexion') }}">Connecter-vous</a>
+            </div>
+        </div>
+    </div>
+
+</</div>
+{% endblock %}
